@@ -4,7 +4,7 @@ export const teamMembers = [
     name: 'James Clarke',
     title: 'Founder and Managing Partner',
     subtitle: 'Co-Founder, The Labor & Honor Foundation',
-    image: '/assets/james-clarke.jpeg',
+    image: '/assets/team/james-clarke-new.png',
     linkedin: '#',
   },
   {

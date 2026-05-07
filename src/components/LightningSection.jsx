@@ -36,7 +36,7 @@ export default function LightningSection() {
         loop={true}
         preload="auto"
       >
-        <source src="/assets/lightning-mountain.mp4" type="video/mp4" />
+        <source src="/videos/lightning-mountain.mp4" type="video/mp4" />
       </video>
 
       {/* Layered cinematic overlays */}

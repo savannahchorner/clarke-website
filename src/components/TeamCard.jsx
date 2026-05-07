@@ -40,7 +40,7 @@ export default function TeamCard({ member, index = 0 }) {
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="font-serif text-xl font-400 text-ivory mb-1 leading-tight">{name}</h3>
+        <h3 className="font-serif text-xl font-600 text-ivory mb-1 leading-tight">{name}</h3>
         <p className="font-sans text-xs text-mutedGold tracking-widest uppercase mb-1">{title}</p>
         {subtitle && (
           <p className="font-sans text-xs text-silverGray/55 tracking-wide italic mb-4">{subtitle}</p>

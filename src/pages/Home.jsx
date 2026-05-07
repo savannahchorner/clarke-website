@@ -7,6 +7,7 @@ import StatCounter from '../components/StatCounter'
 import CTASection from '../components/CTASection'
 import MissionVideoSection from '../components/MissionVideoSection'
 import LightningSection from '../components/LightningSection'
+import PortfolioCarousel from '../components/PortfolioCarousel'
 import TeamCard from '../components/TeamCard'
 import { teamMembers } from '../data/team'
 
@@ -265,191 +266,7 @@ function PortfolioImpact() {
   )
 }
 
-// ── Selected Portfolio Companies (manual carousel) ────────────────────────────
-const selectedCompanies = [
-  { name: 'PetIQ',                   logo: '/assets/logos/pet-iq.jpg',                   logoSize: 'max-h-[106px] max-w-[220px]' },
-  { name: 'Contour',                  logo: '/assets/logos/contour.png',                  logoSize: 'max-h-[120px] max-w-[250px]' },
-  { name: 'BoardCo',                  logo: '/assets/logos/boardco.png',                  logoSize: 'max-h-[101px] max-w-[210px]' },
-  { name: 'Biolexis',                 logo: '/assets/logos/biolexis-therapeutics.png',    logoSize: 'max-h-24    max-w-[200px]'   },
-  { name: 'Clearlink',                logo: '/assets/logos/clearlink.png',                logoSize: 'max-h-[101px] max-w-[210px]' },
-  { name: 'HireVue',                  logo: '/assets/logos/hirevue.png',                  logoSize: 'max-h-[106px] max-w-[220px]' },
-  { name: 'Montigen Pharmaceuticals', logo: '/assets/logos/montigen-pharmaceuticals.png', logoSize: 'max-h-[125px] max-w-[260px]' },
-]
-
-function ArrowButton({ direction, onClick, disabled }) {
-  return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={direction === 'left' ? 'Scroll left' : 'Scroll right'}
-      className={`
-        flex items-center justify-center w-10 h-10
-        border transition-all duration-200
-        ${disabled
-          ? 'border-[rgba(181,154,99,0.12)] text-silverGray/20 cursor-default'
-          : 'border-[rgba(181,154,99,0.35)] text-mutedGold hover:border-mutedGold hover:bg-mutedGold/10 cursor-pointer'
-        }
-      `}
-    >
-      {direction === 'left' ? (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-      ) : (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-      )}
-    </button>
-  )
-}
-
-function SelectedPortfolio() {
-  const scrollRef = useRef(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
-
-  const syncScrollState = () => {
-    const el = scrollRef.current
-    if (!el) return
-    setCanScrollLeft(el.scrollLeft > 4)
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4)
-  }
-
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-    syncScrollState()
-    el.addEventListener('scroll', syncScrollState, { passive: true })
-    const ro = new ResizeObserver(syncScrollState)
-    ro.observe(el)
-    return () => {
-      el.removeEventListener('scroll', syncScrollState)
-      ro.disconnect()
-    }
-  }, [])
-
-  const scrollBy = (direction) => {
-    const el = scrollRef.current
-    if (!el) return
-    const card = el.querySelector('[data-card]')
-    const gap = 24
-    const amount = card ? card.offsetWidth + gap : 400
-    el.scrollBy({ left: direction * amount, behavior: 'smooth' })
-  }
-
-  return (
-    <section className="relative bg-richBlack overflow-hidden">
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-mutedGold/25 to-transparent" />
-
-      {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-48 rounded-full bg-mutedGold/4 blur-3xl pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
-
-        {/* Heading + arrow controls row */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.65 }}
-          className="mb-12"
-        >
-          <div className="flex items-end justify-between gap-6">
-            <div>
-              <p className="section-label mb-4">Selected Portfolio Companies</p>
-              <h2 className="font-serif font-300 text-ivory leading-tight mb-5"
-                style={{ fontSize: 'clamp(30px, 3.5vw, 48px)' }}>
-                Selected Portfolio Companies
-              </h2>
-              <div className="gold-divider" />
-            </div>
-            <div className="flex gap-3 flex-shrink-0 pb-1">
-              <ArrowButton direction="left"  onClick={() => scrollBy(-1)} disabled={!canScrollLeft} />
-              <ArrowButton direction="right" onClick={() => scrollBy(1)}  disabled={!canScrollRight} />
-            </div>
-          </div>
-          <p className="font-sans text-sm text-silverGray/55 max-w-xl leading-relaxed mt-6">
-            Partnering with operators and category builders across consumer, healthcare,
-            technology, and growth markets.
-          </p>
-        </motion.div>
-
-        {/* Carousel — edge fades + scroll container */}
-        <div className="relative">
-          {/* Left fade */}
-          <div className={`
-            absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none
-            bg-gradient-to-r from-richBlack to-transparent
-            transition-opacity duration-300
-            ${canScrollLeft ? 'opacity-100' : 'opacity-0'}
-          `} />
-          {/* Right fade */}
-          <div className={`
-            absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none
-            bg-gradient-to-l from-richBlack to-transparent
-            transition-opacity duration-300
-            ${canScrollRight ? 'opacity-100' : 'opacity-0'}
-          `} />
-
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto no-scrollbar"
-            style={{ scrollSnapType: 'x mandatory' }}
-          >
-            {selectedCompanies.map((company) => (
-              <div
-                key={company.name}
-                data-card
-                className="
-                  flex-shrink-0
-                  w-full
-                  sm:w-[calc(50%-12px)]
-                  lg:w-[calc(33.333%-16px)]
-                "
-                style={{ scrollSnapAlign: 'start' }}
-              >
-                <div className="
-                  group relative flex flex-col items-center justify-center gap-4
-                  h-52 px-8 py-8
-                  bg-warmCharcoal border border-[rgba(181,154,99,0.14)]
-                  transition-all duration-300 ease-out
-                  hover:border-mutedGold hover:-translate-y-1
-                  hover:shadow-[0_8px_32px_rgba(181,154,99,0.13)]
-                ">
-                  {/* Gold top accent line */}
-                  <div className="absolute top-0 left-0 right-0 h-px bg-mutedGold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-
-                  <img
-                    src={company.logo}
-                    alt={company.name}
-                    className={`
-                      ${company.logoSize} w-auto object-contain
-                      opacity-65 group-hover:opacity-100
-                      grayscale group-hover:grayscale-0
-                      transition-all duration-300
-                    `}
-                    loading="lazy"
-                  />
-
-                  <span className="
-                    font-sans text-[9px] tracking-[0.18em] uppercase
-                    text-silverGray/40 group-hover:text-silverGray/75
-                    transition-colors duration-300 text-center leading-tight
-                  ">
-                    {company.name}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-mutedGold/25 to-transparent" />
-    </section>
-  )
-}
+// ── Portfolio Carousel — see src/components/PortfolioCarousel.jsx ─────────────
 
 // ── Team Preview ──────────────────────────────────────────────────────────────
 function TeamPreview() {
@@ -494,7 +311,7 @@ export default function Home() {
       <LightningSection />
       <OperatingAdvantage />
       <PortfolioImpact />
-      <SelectedPortfolio />
+      <PortfolioCarousel />
       <TeamPreview />
       <CTASection
         label="Partner With Us"

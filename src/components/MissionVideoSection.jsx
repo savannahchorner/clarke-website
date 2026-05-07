@@ -1,13 +1,33 @@
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { useOneTimeVideoPlay } from '../hooks/useOneTimeVideoPlay'
 
 export default function MissionVideoSection() {
-  const { sectionRef, videoRef } = useOneTimeVideoPlay(0.4)
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.currentTime = 0
+          video.play().catch(() => {})
+        } else {
+          video.pause()
+          video.currentTime = 0
+        }
+      },
+      { threshold: 0.5 }
+    )
+
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section
       id="our-mission"
-      ref={sectionRef}
       className="relative min-h-[85vh] flex items-center justify-center overflow-hidden"
     >
       {/* Entry gradient — blends from the section above */}
@@ -16,14 +36,12 @@ export default function MissionVideoSection() {
       {/* Video background */}
       <video
         ref={videoRef}
+        src="/videos/lightbulb-video.mp4"
         className="absolute inset-0 w-full h-full object-cover"
         muted
         playsInline
-        loop={false}
         preload="auto"
-      >
-        <source src="/assets/lightbulb-video.mp4" type="video/mp4" />
-      </video>
+      />
 
       {/* Dark cinematic overlay */}
       <div className="absolute inset-0 bg-richBlack/60" />
