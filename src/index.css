@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #050505;
+    color: #F3EFE7;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  ::selection {
+    background-color: #B59A63;
+    color: #050505;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-mutedGold text-richBlack font-sans font-600 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-[#cbb07a] hover:shadow-[0_0_24px_rgba(181,154,99,0.4)] active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 border border-ivory/40 text-ivory font-sans font-400 text-sm tracking-widest uppercase transition-all duration-300 hover:border-mutedGold hover:text-mutedGold;
+  }
+
+  .card-base {
+    @apply bg-warmCharcoal border border-[rgba(181,154,99,0.15)] transition-all duration-300 hover:border-mutedGold hover:shadow-[0_8px_32px_rgba(181,154,99,0.12)];
+  }
+
+  .section-label {
+    @apply text-mutedGold font-sans text-xs tracking-[0.25em] uppercase font-500;
+  }
+
+  .gold-divider {
+    @apply w-12 h-px bg-mutedGold;
+  }
+}
+
+@layer utilities {
+  .font-300 { font-weight: 300; }
+  .font-400 { font-weight: 400; }
+  .font-500 { font-weight: 500; }
+  .font-600 { font-weight: 600; }
+  .font-700 { font-weight: 700; }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #B59A63 0%, #D4B97A 50%, #B59A63 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-grid-overlay {
+    background-image:
+      linear-gradient(rgba(181, 154, 99, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(181, 154, 99, 0.04) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .nav-blur {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+/* Hide scrollbar for carousels while keeping scroll functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #B59A63; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #cbb07a; }
