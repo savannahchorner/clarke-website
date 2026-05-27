@@ -1,47 +1,24 @@
-import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 export default function MissionVideoSection() {
-  const videoRef = useRef(null)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.currentTime = 0
-          video.play().catch(() => {})
-        } else {
-          video.pause()
-          video.currentTime = 0
-        }
-      },
-      { threshold: 0.5 }
-    )
-
-    observer.observe(video)
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section
       id="our-mission"
       className="relative min-h-[85vh] flex items-center justify-center overflow-hidden"
     >
-      {/* Entry gradient — blends from the section above */}
+      {/* Entry gradient */}
       <div className="absolute top-0 left-0 right-0 h-32 z-10 bg-gradient-to-b from-richBlack to-transparent pointer-events-none" />
 
-      {/* Video background */}
+      {/* Video background — same autoplay pattern as hero */}
       <video
-        ref={videoRef}
-        src="/videos/lightbulb-video.mp4"
         className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
         muted
+        loop
         playsInline
-        preload="auto"
-      />
+      >
+        <source src="/videos/lightbulb-video.mp4" type="video/mp4" />
+      </video>
 
       {/* Dark cinematic overlay */}
       <div className="absolute inset-0 bg-richBlack/60" />
@@ -76,13 +53,13 @@ export default function MissionVideoSection() {
             className="font-sans text-silverGray/75 leading-relaxed max-w-2xl mx-auto"
             style={{ fontSize: 'clamp(14px, 1.1vw, 17px)' }}
           >
-            We partner with founders who have the vision to build category-defining companies —
+            We partner with founders who have the vision to build category-defining companies
             and bring the operating experience to help them get there.
           </p>
         </motion.div>
       </div>
 
-      {/* Exit gradient — blends into the section below */}
+      {/* Exit gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-32 z-10 bg-gradient-to-t from-richBlack to-transparent pointer-events-none" />
     </section>
   )

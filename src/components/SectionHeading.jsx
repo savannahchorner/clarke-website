@@ -1,44 +1,70 @@
 import { motion } from 'framer-motion'
 
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.1, delayChildren: 0 }
+  }
+}
+
+const item = {
+  hidden: { opacity: 0, y: 22 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }
+}
+
 export default function SectionHeading({
   label,
   title,
   subtitle,
   centered = false,
   light = false,
+  noWrapTitle = false,
+  noWrapSubtitle = false,
+  compact = false,
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      variants={container}
+      initial="hidden"
+      whileInView="show"
       viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.65, ease: 'easeOut' }}
       className={centered ? 'text-center' : ''}
     >
       {label && (
-        <p className="section-label mb-4">{label}</p>
+        <motion.p variants={item} className="section-label mb-5">{label}</motion.p>
       )}
-      <h2
-        className={`font-serif font-400 leading-[1.1] mb-5 ${
+      <motion.h2
+        variants={item}
+        className={`font-serif font-400 leading-[1.08] mb-5 ${
           light ? 'text-richBlack' : 'text-ivory'
-        } text-4xl md:text-5xl lg:text-6xl`}
+        } ${compact
+          ? 'text-2xl md:text-3xl lg:text-4xl'
+          : noWrapTitle
+            ? 'text-4xl md:text-5xl lg:text-5xl xl:text-6xl lg:whitespace-nowrap'
+            : 'text-4xl md:text-5xl lg:text-6xl'
+        }`}
       >
         {title}
-      </h2>
-      {centered && (
-        <div className="flex justify-center mb-5">
+      </motion.h2>
+      {centered ? (
+        <motion.div variants={item} className="flex justify-center mb-6">
           <div className="gold-divider" />
-        </div>
+        </motion.div>
+      ) : (
+        <motion.div variants={item} className="mb-6">
+          <div className="gold-divider" />
+        </motion.div>
       )}
-      {!centered && <div className="gold-divider mb-5" />}
       {subtitle && (
-        <p
-          className={`font-sans text-base md:text-lg leading-relaxed max-w-2xl ${
-            light ? 'text-charcoal/70' : 'text-silverGray'
+        <motion.p
+          variants={item}
+          className={`font-sans text-base md:text-lg leading-[1.85] ${
+            noWrapSubtitle ? 'lg:whitespace-nowrap' : 'max-w-2xl'
+          } ${light ? 'text-charcoal/70' : 'text-silverGray'
           } ${centered ? 'mx-auto' : ''}`}
         >
           {subtitle}
-        </p>
+        </motion.p>
       )}
     </motion.div>
   )

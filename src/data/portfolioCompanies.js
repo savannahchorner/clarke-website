@@ -2,6 +2,7 @@ export const portfolioCompanies = [
   {
     name: 'HireVue',
     slug: 'hirevue',
+    logoScale: 1.12,
     logo: '/assets/portfolio-logos/hirevue-portfolio-carousel.png',
     category: 'Human Capital Technology',
     description:
@@ -9,11 +10,12 @@ export const portfolioCompanies = [
     clarkeRole:
       'Clarke Capital Partners supported HireVue through a critical phase of growth, providing strategic capital and operational guidance as the company expanded its enterprise customer base and scaled its platform infrastructure.',
     growthStory:
-      'Under disciplined leadership and with the right capital partners, HireVue grew into a recognized category leader in human capital technology — serving global enterprises seeking more intelligent, efficient, and equitable hiring processes.',
+      'Under disciplined leadership and with the right capital partners, HireVue grew into a recognized category leader in human capital technology, serving global enterprises seeking more intelligent, efficient, and equitable hiring processes.',
   },
   {
     name: 'Clearlink',
     slug: 'clearlink',
+    logoScale: 1.12,
     logo: '/assets/portfolio-logos/clearlink-portfolio-carousel.png',
     category: 'Performance Marketing & Technology',
     description:
@@ -26,6 +28,7 @@ export const portfolioCompanies = [
   {
     name: 'Contour',
     slug: 'contour',
+    logoScale: 1.42,
     logo: '/assets/portfolio-logos/contour-portfolio-carousel.png',
     category: 'Consumer Goods',
     description:
@@ -38,6 +41,7 @@ export const portfolioCompanies = [
   {
     name: 'BoardCo',
     slug: 'boardco',
+    logoScale: 1.40,
     logo: '/assets/portfolio-logos/boardco-portfolio-carousel.png',
     category: 'Specialty Retail & Action Sports',
     description:
@@ -50,6 +54,7 @@ export const portfolioCompanies = [
   {
     name: 'PetIQ',
     slug: 'petiq',
+    logoScale: 0.87,
     logo: '/assets/portfolio-logos/pet-iq-portfolio-carousel.png',
     category: 'Pet Health & Wellness',
     description:
@@ -57,11 +62,12 @@ export const portfolioCompanies = [
     clarkeRole:
       'Clarke Capital Partners engaged with PetIQ during a formative period of its growth, contributing to strategic dialogue around market expansion and operational scaling as the company broadened its service footprint.',
     growthStory:
-      'PetIQ grew into a publicly traded company and a recognized leader in accessible pet health — a testament to the strength of the team, the mission, and the capital partners who believed in the vision early.',
+      'PetIQ grew into a publicly traded company and a recognized leader in accessible pet health, a testament to the strength of the team, the mission, and the capital partners who believed in the vision early.',
   },
   {
     name: 'Biolexis Therapeutics',
     slug: 'biolexis',
+    logoScale: 1.44,
     logo: '/assets/portfolio-logos/biolexis-portfolio-carousel.png',
     category: 'Biopharmaceuticals',
     description:
@@ -74,6 +80,7 @@ export const portfolioCompanies = [
   {
     name: 'Montigen Pharmaceuticals',
     slug: 'montigen',
+    logoScale: 1.44,
     logo: '/assets/portfolio-logos/montigen-portfolio-carousel.png',
     category: 'Pharmaceutical Development',
     description:

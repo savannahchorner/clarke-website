@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion'
-import { useOneTimeVideoPlay } from '../hooks/useOneTimeVideoPlay'
 
 const proofCards = [
   {
     title: 'Pattern Recognition',
-    body: 'Decades of operating across industries give us the pattern recognition to identify companies with durable advantages — before the market prices them in.',
+    body: 'Decades of operating across industries give us the pattern recognition to identify companies with durable advantages, before the market prices them in.',
   },
   {
     title: 'Operating Discipline',
@@ -17,11 +16,8 @@ const proofCards = [
 ]
 
 export default function LightningSection() {
-  const { sectionRef, videoRef } = useOneTimeVideoPlay(0.35)
-
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden"
     >
       {/* Entry gradient — seamless continuation from lightbulb section */}
@@ -29,12 +25,11 @@ export default function LightningSection() {
 
       {/* Video background */}
       <video
-        ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
         muted
+        loop
         playsInline
-        loop={true}
-        preload="auto"
       >
         <source src="/videos/lightning-mountain.mp4" type="video/mp4" />
       </video>
@@ -55,12 +50,13 @@ export default function LightningSection() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="section-label mb-8 tracking-[0.3em]">The Clarke Capital Difference</p>
+          <p className="section-label mb-8 tracking-[0.3em]">The Clarke Difference</p>
           <h2
             className="font-serif font-300 text-ivory leading-[1.08] mb-10"
             style={{ fontSize: 'clamp(36px, 5.5vw, 78px)' }}
           >
-            The difference between expertise and luck.<br />
+            The difference between<br />
+            <span className="lg:whitespace-nowrap">expertise and luck.</span><br />
             <span className="text-gradient-gold italic">Lightning striking repeatedly.</span>
           </h2>
           <div className="flex justify-center">
@@ -79,7 +75,7 @@ export default function LightningSection() {
           className="bg-warmCharcoal/60 border border-[rgba(181,154,99,0.12)] backdrop-blur-sm p-10 md:p-14"
         >
           {/* Editorial paragraph */}
-          <div className="max-w-3xl mb-12">
+          <div className="max-w-3xl mx-auto mb-12 text-center">
             <p className="section-label mb-6">Portfolio Story</p>
             <p
               className="font-sans text-silverGray/80 leading-[1.85]"
@@ -116,31 +112,67 @@ export default function LightningSection() {
             ))}
           </div>
 
-          {/* Data placeholder — room for portfolio stories, milestones, metrics */}
-          <div className="mt-12 pt-10 border-t border-[rgba(181,154,99,0.1)]">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {[
-                { label: 'Company Stories',    placeholder: true },
-                { label: 'Growth Milestones',  placeholder: true },
-                { label: 'Revenue Scale',      placeholder: true },
-                { label: 'Jobs Created',       placeholder: true },
-                { label: 'Capital Raised',     placeholder: true },
-                { label: 'Geographic Reach',   placeholder: true },
-              ].map(({ label }) => (
-                <div
-                  key={label}
-                  className="border border-dashed border-[rgba(181,154,99,0.15)] p-4 text-center"
-                >
-                  <p className="font-sans text-[10px] text-mutedGold/40 tracking-widest uppercase leading-tight">
-                    {label}
-                  </p>
-                  <div className="mt-2 h-px w-6 bg-mutedGold/20 mx-auto" />
-                </div>
-              ))}
+          {/* Portfolio metrics */}
+          <div className="mt-12">
+
+            {/* Stats bar — full-bleed, no card boxes, divider-only style */}
+            <div className="-mx-10 md:-mx-14 border-t border-[rgba(181,154,99,0.1)]">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+                {[
+                  { number: '40,000', suffix: '+', label: 'Jobs Created'   },
+                  { number: '2B',     suffix: '+', label: 'Capital Raised' },
+                  { number: '1B',     suffix: '+', label: 'Debt'           },
+                  { number: '5',      suffix: '',  label: 'Continents'     },
+                  { number: '6B',     suffix: '+', label: 'Annual Revenue' },
+                ].map(({ number, suffix, label }, i, arr) => (
+                  <motion.div
+                    key={label}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    className={`text-center px-6 py-8${i < arr.length - 1 ? ' border-r border-[rgba(181,154,99,0.15)]' : ''}`}
+                  >
+                    <div className="font-serif font-300 leading-none mb-2">
+                      <span className="text-gradient-gold" style={{ fontSize: 'clamp(28px, 3.5vw, 52px)' }}>
+                        {number}
+                      </span>
+                      {suffix && (
+                        <span className="text-mutedGold" style={{ fontSize: 'clamp(18px, 2.2vw, 34px)' }}>
+                          {suffix}
+                        </span>
+                      )}
+                    </div>
+                    <p className="font-sans text-xs tracking-[0.2em] uppercase text-silverGray/70 mt-3">
+                      {label}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-            <p className="font-sans text-[10px] text-silverGray/25 tracking-widest uppercase mt-4 text-center">
-              Portfolio data and company stories — coming soon
-            </p>
+
+            {/* Company Stories — full-width featured card */}
+            <a href="#portfolio-companies" className="block mt-6">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+                className="border border-mutedGold/25 bg-mutedGold/5 hover:bg-mutedGold/10 hover:border-mutedGold/45 px-8 py-6 group transition-all duration-300 flex items-center justify-between"
+              >
+                <div>
+                  <p className="section-label text-mutedGold mb-1">Company Stories</p>
+                  <p className="font-serif text-xl font-300 text-ivory">Companies We've Helped Scale</p>
+                </div>
+                <svg
+                  className="w-6 h-6 text-mutedGold/50 group-hover:text-mutedGold group-hover:translate-x-1 transition-all duration-300 flex-shrink-0 ml-6"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </motion.div>
+            </a>
+
           </div>
         </motion.div>
       </div>

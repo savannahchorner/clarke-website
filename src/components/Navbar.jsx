@@ -3,10 +3,9 @@ import { NavLink, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { label: 'About',      to: '/about' },
+  { label: 'About',       to: '/about' },
   { label: 'Our Mission', href: '/#our-mission' },
-  { label: 'Team',       to: '/team' },
-  { label: 'Contact',    to: '/contact' },
+  { label: 'Team',        to: '/team' },
 ]
 
 export default function Navbar() {
@@ -29,18 +28,26 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'nav-blur bg-richBlack/85 border-b border-[rgba(181,154,99,0.12)] py-3'
-            : 'bg-transparent py-5'
+            ? 'nav-blur bg-richBlack/85 border-b border-[rgba(181,154,99,0.12)] pt-2 pb-5'
+            : 'bg-transparent pt-3 pb-7'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo + submark tagline */}
           <Link to="/" onClick={() => setMenuOpen(false)} className="flex items-center">
-            <img
-              src="/assets/clarke-logo.png"
-              alt="Clarke Capital Partners"
-              className="h-20 md:h-24 w-auto object-contain"
-            />
+            <div className="flex flex-col lg:flex-row items-start lg:items-center lg:gap-4">
+              <img
+                src="/assets/clarke-logo.png"
+                alt="Clarke Capital Partners"
+                className="h-32 md:h-36 lg:h-40 w-auto object-contain flex-shrink-0"
+                style={{ filter: 'brightness(0) invert(1)' }}
+              />
+              {/* Vertical divider — large desktop only */}
+              <div className="hidden lg:block w-px h-8 bg-mutedGold/20 flex-shrink-0" />
+              <span className="font-sans text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-mutedGold/50 leading-none lg:leading-[1.55] -mt-2 md:-mt-2.5 lg:mt-0 lg:whitespace-nowrap">
+                Operators investing in Operators
+              </span>
+            </div>
           </Link>
 
           {/* Desktop nav */}

@@ -1,5 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import PageLayout from '../components/PageLayout'
 import SectionHeading from '../components/SectionHeading'
@@ -43,10 +42,11 @@ function Hero() {
       <div className="absolute top-1/3 right-1/4 w-60 h-60 rounded-full bg-deepForest/15 blur-2xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 flex flex-col justify-center min-h-screen">
-        <motion.div variants={container} initial="hidden" animate="show" className="max-w-4xl">
-          <motion.div variants={item} className="flex items-center gap-3 mb-8">
+        <motion.div variants={container} initial="hidden" animate="show" className="max-w-4xl mx-auto text-center">
+          <motion.div variants={item} className="flex items-center justify-center gap-3 mb-8">
             <div className="w-8 h-px bg-mutedGold" />
             <span className="section-label">Growth Capital · Operating Experience</span>
+            <div className="w-8 h-px bg-mutedGold" />
           </motion.div>
 
           <motion.h1
@@ -60,13 +60,13 @@ function Hero() {
 
           <motion.p
             variants={item}
-            className="font-sans text-lg md:text-xl text-silverGray/85 leading-relaxed max-w-xl mb-10"
+            className="font-sans text-lg md:text-xl text-silverGray/85 leading-relaxed max-w-xl mx-auto mb-10"
           >
             We partner with exceptional founders building category-defining
-            companies — and bring real operating experience to every stage of growth.
+            companies and bring real operating experience to every stage of growth.
           </motion.p>
 
-          <motion.div variants={item} className="flex flex-col sm:flex-row gap-4">
+          <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/about" className="btn-primary">Learn About Us</Link>
             <Link to="/team"  className="btn-secondary">Meet the Team</Link>
           </motion.div>
@@ -93,10 +93,9 @@ function Hero() {
 
 // ── Stats Bar ─────────────────────────────────────────────────────────────────
 const statsFormatted = [
-  { value: 47,  suffix: '+',  label: 'Companies Funded'  },
-  { value: 28,  suffix: 'B+', label: 'Portfolio Value'   },
-  { value: 25,  suffix: '+',  label: 'Years Experience'  },
-  { value: 18,  suffix: '+',  label: 'Successful Exits'  },
+  { value: 47,  suffix: '+',  label: 'Companies Funded'     },
+  { value: 6,   suffix: 'B+', label: 'Annual Revenue'       },
+  { value: 20,  suffix: '',   label: 'Years Since Founding'  },
 ]
 
 function StatsBar() {
@@ -120,7 +119,7 @@ function OperatingAdvantage() {
         </svg>
       ),
       title: 'Operator DNA',
-      body: 'We have built companies from the ground up. Our partners have been in the founder seat — and bring that empathy, pattern recognition, and accountability to every relationship.',
+      body: 'We have built companies from the ground up. Our partners have been in the founder seat and bring that empathy, pattern recognition, and accountability to every relationship.',
     },
     {
       icon: (
@@ -129,7 +128,7 @@ function OperatingAdvantage() {
         </svg>
       ),
       title: 'Growth Capital',
-      body: 'We deploy growth-stage capital with conviction. From Series A through pre-IPO, we size positions to lead or co-lead — and participate through the full arc of a company\'s growth.',
+      body: 'We deploy growth-stage capital with conviction. From Series A through pre-IPO, we size positions to lead or co-lead and participate through the full arc of a company\'s growth.',
     },
     {
       icon: (
@@ -138,7 +137,7 @@ function OperatingAdvantage() {
         </svg>
       ),
       title: 'Strategic Network',
-      body: 'Decades of relationships across enterprise buyers, talent networks, and co-investors. Our network is a direct resource for the companies we back — not a talking point.',
+      body: 'Decades of relationships across enterprise buyers, talent networks, and co-investors. Our network is a direct resource for the companies we back, not a talking point.',
     },
   ]
 
@@ -151,8 +150,9 @@ function OperatingAdvantage() {
         <div className="text-center mb-16">
           <SectionHeading
             label="The Clarke Advantage"
-            title="Built for founders who are ready to grow with purpose."
+            title="Built for Founders Who Are Ready to Grow with Purpose."
             centered
+            noWrapTitle
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -179,93 +179,6 @@ function OperatingAdvantage() {
 }
 
 // ── Impact at Scale ───────────────────────────────────────────────────────────
-function useCountUp(target, duration, started) {
-  const [value, setValue] = useState(0)
-  useEffect(() => {
-    if (!started) return
-    let raf
-    const start = performance.now()
-    const tick = (now) => {
-      const p = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - p, 3)
-      setValue(Math.round(eased * target))
-      if (p < 1) raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [target, duration, started])
-  return value
-}
-
-function ImpactStat({ prefix = '', value, suffix = '', label, sublabel, delay = 0, formatNum = false, duration = 2400 }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-  const count = useCountUp(value, duration, inView)
-  const display = formatNum ? count.toLocaleString() : count
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex flex-col items-center text-center px-6 py-12"
-    >
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-12 bg-mutedGold/40 group-hover:w-full group-hover:bg-mutedGold/70 transition-all duration-700 ease-out" />
-      <div className="font-serif font-300 leading-none mb-6 flex items-start justify-center gap-1"
-        style={{ fontSize: 'clamp(60px, 6.5vw, 92px)' }}>
-        {prefix && <span className="text-mutedGold font-serif" style={{ fontSize: '0.48em', marginTop: '0.18em' }}>{prefix}</span>}
-        <span className="text-ivory tabular-nums">{display}</span>
-        {suffix && <span className="text-mutedGold font-serif" style={{ fontSize: '0.48em', marginTop: '0.18em' }}>{suffix}</span>}
-      </div>
-      <p className="font-sans text-xs tracking-[0.2em] uppercase text-silverGray/80 mb-2 font-500">{label}</p>
-      {sublabel && <p className="font-sans text-xs text-silverGray/40 leading-relaxed max-w-[160px]">{sublabel}</p>}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-mutedGold/30 group-hover:w-3/4 transition-all duration-700 ease-out" />
-    </motion.div>
-  )
-}
-
-const impactStats = [
-  { prefix: '$', value: 3,     suffix: 'B+', label: 'Raised & Allocated', sublabel: 'Deployed since 2005',              delay: 0,   duration: 2000 },
-  { prefix: '$', value: 5,     suffix: 'B+', label: 'Annual Revenue',      sublabel: 'Across portfolio companies',       delay: 0.1, duration: 2200 },
-  {              value: 50000, suffix: '+',  label: 'Jobs Created',         sublabel: 'Global workforce impact',          delay: 0.2, duration: 2600, formatNum: true },
-  {              value: 5,                   label: 'Continents',           sublabel: 'Worldwide operations',             delay: 0.3, duration: 1800 },
-]
-
-function PortfolioImpact() {
-  return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-warmCharcoal" />
-      <div className="absolute inset-0 bg-gradient-to-b from-richBlack/50 via-transparent to-richBlack/50" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-64 rounded-full bg-mutedGold/5 blur-3xl pointer-events-none" />
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-mutedGold/30 to-transparent" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.65 }}
-          className="text-center pt-20 pb-10"
-        >
-          <p className="section-label mb-5">Our Portfolio Companies</p>
-          <h2 className="font-serif font-300 text-ivory leading-tight" style={{ fontSize: 'clamp(34px, 3.5vw, 52px)' }}>
-            Impact at Scale
-          </h2>
-          <div className="flex justify-center mt-5 mb-2"><div className="gold-divider" /></div>
-          <p className="font-sans text-sm text-silverGray/50 mt-5 max-w-md mx-auto leading-relaxed">
-            Two decades of disciplined investing. Measurable, compounding results.
-          </p>
-        </motion.div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-[rgba(181,154,99,0.12)] pb-4">
-          {impactStats.map((s, i) => <ImpactStat key={i} {...s} />)}
-        </div>
-      </div>
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-mutedGold/30 to-transparent" />
-    </section>
-  )
-}
-
 // ── Portfolio Carousel — see src/components/PortfolioCarousel.jsx ─────────────
 
 // ── Team Preview ──────────────────────────────────────────────────────────────
@@ -279,6 +192,7 @@ function TeamPreview() {
             label="The Partnership"
             title="Operators. Investors. Builders."
             subtitle="A team that has been in the founder seat and brings that experience to every partnership."
+            noWrapSubtitle
           />
           <motion.div
             initial={{ opacity: 0 }}
@@ -293,7 +207,7 @@ function TeamPreview() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {preview.map((member, i) => (
-            <TeamCard key={member.id} member={member} index={i} />
+            <TeamCard key={member.id} member={member} index={i} mono />
           ))}
         </div>
       </div>
@@ -310,12 +224,17 @@ export default function Home() {
       <MissionVideoSection />
       <LightningSection />
       <OperatingAdvantage />
-      <PortfolioImpact />
-      <PortfolioCarousel />
+      <div id="portfolio-companies">
+        <PortfolioCarousel />
+      </div>
       <TeamPreview />
       <CTASection
         label="Partner With Us"
-        title="We help ambitious companies scale with discipline, clarity, and conviction."
+        title={<>
+          <span style={{ display: 'block', textAlign: 'center' }}>We help ambitious companies</span>
+          <span className="lg:whitespace-nowrap" style={{ display: 'block', textAlign: 'center' }}>scale with discipline, clarity,</span>
+          <span className="lg:whitespace-nowrap" style={{ display: 'block', textAlign: 'center' }}>and conviction.</span>
+        </>}
         subtitle="Whether you're a founder raising your next round or an operator looking to deploy capital with purpose, we'd like to hear from you."
         primaryLabel="Connect With Us"
         primaryTo="/contact"

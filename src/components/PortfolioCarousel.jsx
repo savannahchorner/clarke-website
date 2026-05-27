@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { portfolioCompanies } from '../data/portfolioCompanies'
 
@@ -151,15 +150,14 @@ export default function PortfolioCarousel() {
         >
           <p className="section-label mb-5">Selected Portfolio Companies</p>
           <h2
-            className="font-serif font-300 text-ivory leading-tight mb-6"
-            style={{ fontSize: 'clamp(28px, 3.5vw, 48px)' }}
+            className="font-serif font-300 text-ivory leading-[1.08] mb-6 text-4xl md:text-5xl lg:text-6xl"
           >
             Companies We've Helped Scale
           </h2>
           <div className="flex justify-center mb-6">
             <div className="gold-divider" />
           </div>
-          <p className="font-sans text-sm text-silverGray/55 max-w-lg mx-auto leading-relaxed">
+          <p className="font-sans text-base md:text-lg text-silverGray leading-[1.85] max-w-2xl mx-auto">
             Partnering with operators and category builders across consumer, healthcare,
             technology, and growth markets.
           </p>
@@ -202,25 +200,15 @@ export default function PortfolioCarousel() {
             >
               {DOUBLED.map((company, i) => (
                 <div key={`${company.slug}-${i}`} className="flex items-center flex-shrink-0">
-                  <Link
-                    to={`/portfolio/${company.slug}`}
-                    className="group flex items-center justify-center px-10"
-                    aria-label={company.name}
-                    draggable={false}
-                  >
+                  <div className="flex items-center justify-center px-10">
                     <img
                       src={company.logo}
                       alt={company.name}
-                      className={`
-                        h-16 w-auto object-contain select-none
-                        opacity-60 group-hover:opacity-100
-                        transition-all duration-300
-                        group-hover:scale-105
-                        ${company.slug === 'petiq' ? 'scale-[0.87]' : ''}
-                      `}
+                      className="h-16 w-auto object-contain select-none opacity-60"
+                      style={{ transform: `scale(${company.logoScale ?? 1})` }}
                       draggable="false"
                     />
-                  </Link>
+                  </div>
                   {/* Vertical gold divider */}
                   <div className="w-px h-10 bg-mutedGold/18 flex-shrink-0" />
                 </div>
@@ -255,23 +243,6 @@ export default function PortfolioCarousel() {
           ))}
         </div>
 
-        {/* ── CTA ── */}
-        <div className="flex justify-center">
-          <Link
-            to="/portfolio"
-            className="
-              inline-flex items-center justify-center
-              px-10 py-3.5
-              border border-[rgba(181,154,99,0.4)] text-mutedGold
-              font-sans text-xs tracking-[0.25em] uppercase
-              transition-all duration-300
-              hover:border-mutedGold hover:bg-mutedGold/8
-              hover:shadow-[0_0_24px_rgba(181,154,99,0.2)]
-            "
-          >
-            View All Portfolio Companies
-          </Link>
-        </div>
       </div>
 
       {/* ── Bottom gold accent ── */}

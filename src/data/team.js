@@ -5,7 +5,7 @@ export const teamMembers = [
     title: 'Founder and Managing Partner',
     subtitle: 'Co-Founder, The Labor & Honor Foundation',
     image: '/assets/team/james-clarke-new.png',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/jamesclarke2/',
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const teamMembers = [
     title: 'Co-Founder, The Labor & Honor Foundation',
     subtitle: null,
     image: '/assets/team/andrea-clarke.png',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/theandreaclarke/',
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const teamMembers = [
     title: 'Partner',
     subtitle: null,
     image: '/assets/team/james-harrison.png',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/jamesatharrison/',
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ export const teamMembers = [
     title: 'Partner',
     subtitle: null,
     image: '/assets/team/tyler-hartmann.png',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/tyler-hartmann-920295b2/',
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ export const teamMembers = [
     title: 'Director of Operations and Paralegal',
     subtitle: null,
     image: '/assets/team/denise-bird.png',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/denise-b-bird/',
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ export const teamMembers = [
     title: 'Marketing Analyst',
     subtitle: null,
     image: '/assets/team/savannah-horner.png',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/savannah-horner-3b7344205/',
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ export const teamMembers = [
     title: 'Senior Analyst',
     subtitle: null,
     image: '/assets/team/chad-paxman.png',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/chad-paxman-6ba0a41a8/',
   },
 ]
 
@@ -64,7 +64,7 @@ export const operatingPartners = [
     title: 'Operating Partner',
     subtitle: 'CEO, Reva Capital',
     image: '/assets/team/vageesh.png',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/vageesh-naik-8401644/',
   },
   {
     id: 2,
@@ -72,7 +72,7 @@ export const operatingPartners = [
     title: 'Operating Partner',
     subtitle: 'CEO, BoardCo Inc.',
     image: '/assets/team/mitch-mann.png',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/mitchmann/',
   },
   {
     id: 3,
@@ -80,6 +80,6 @@ export const operatingPartners = [
     title: 'Operating Partner',
     subtitle: 'CEO and Founder, Biolexis Therapeutics Inc.',
     image: '/assets/team/david-bearss.png',
-    linkedin: '#',
+    linkedin: 'https://linkedin.com/in/david-bearss-072267',
   },
 ]

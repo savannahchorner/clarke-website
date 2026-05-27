@@ -10,7 +10,7 @@ function PageHero() {
       <div className="absolute inset-0 hero-grid-overlay opacity-40" />
       <div className="absolute bottom-1/3 right-1/4 w-72 h-72 rounded-full bg-mutedGold/6 blur-3xl" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-36">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-36 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -21,8 +21,8 @@ function PageHero() {
             className="font-serif font-300 text-ivory leading-[1.05]"
             style={{ fontSize: 'clamp(40px, 6vw, 80px)' }}
           >
-            Let's build something<br />
-            <span className="text-gradient-gold italic">exceptional.</span>
+            Let's Build Something<br />
+            <span className="text-gradient-gold italic">Exceptional.</span>
           </h1>
         </motion.div>
       </div>
@@ -175,7 +175,7 @@ function ContactInfo() {
         </svg>
       ),
       label: 'Operators',
-      body: 'Senior operators interested in portfolio company roles or a relationship with the Clarke Capital network — we actively connect talent with opportunity.',
+      body: 'Senior operators interested in portfolio company roles or a relationship with the Clarke Capital network. We actively connect talent with opportunity.',
     },
     {
       icon: (
@@ -243,8 +243,9 @@ export default function Contact() {
             >
               <SectionHeading
                 label="Get in Touch"
-                title="We'd like to hear from you."
+                title="We'd Like to Hear from You."
                 subtitle="Fill out the form and a member of our team will follow up within 48 hours."
+                compact
               />
               <div className="mt-10">
                 <ContactForm />
@@ -259,7 +260,8 @@ export default function Contact() {
             >
               <SectionHeading
                 label="Who We Work With"
-                title="Founders, operators, and partners."
+                title="Founders, Operators, and Partners."
+                compact
               />
               <div className="mt-10">
                 <ContactInfo />

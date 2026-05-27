@@ -1,10 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
-
-const links = [
-  { label: 'About',   to: '/about' },
-  { label: 'Team',    to: '/team' },
-  { label: 'Contact', to: '/contact' },
-]
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
@@ -13,51 +7,32 @@ export default function Footer() {
       <div className="h-px w-full bg-gradient-to-r from-transparent via-mutedGold to-transparent opacity-60" />
 
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
 
           {/* Brand */}
-          <div className="md:col-span-1">
-            <Link to="/">
+          <div>
+            <Link to="/" className="inline-flex flex-row items-center gap-3 md:gap-4 mb-6">
               <img
                 src="/assets/clarke-logo.png"
                 alt="Clarke Capital Partners"
-                className="h-10 w-auto object-contain mb-5"
+                className="h-24 md:h-28 w-auto object-contain flex-shrink-0"
+                style={{ filter: 'brightness(0) invert(1)' }}
               />
+              <div className="w-px h-8 bg-mutedGold/20 flex-shrink-0" />
+              <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-mutedGold/50 leading-[1.55]">
+                Operators Investing<br />in Operators.
+              </span>
             </Link>
-            <p className="font-serif text-lg italic text-silverGray/80 leading-relaxed mb-4">
-              Operators Investing<br />in Operators.
-            </p>
             <p className="font-sans text-sm text-silverGray/50 leading-relaxed">
-              Growth capital backed by real operating experience.
+              Growth Capital Backed by Real Operating Experience.
             </p>
-          </div>
-
-          {/* Navigation */}
-          <div>
-            <p className="section-label mb-6">Navigate</p>
-            <ul className="space-y-3">
-              {links.map(({ label, to }) => (
-                <li key={to}>
-                  <NavLink
-                    to={to}
-                    className={({ isActive }) =>
-                      `font-sans text-sm transition-colors duration-200 ${
-                        isActive ? 'text-mutedGold' : 'text-silverGray hover:text-ivory'
-                      }`
-                    }
-                  >
-                    {label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Contact */}
           <div>
             <p className="section-label mb-6">Connect</p>
             <p className="font-sans text-sm text-silverGray leading-relaxed mb-2">
-              For founders, operators, and partners.
+              For Founders, Operators, and Partners.
             </p>
             <a
               href="mailto:info@clarkecp.com"

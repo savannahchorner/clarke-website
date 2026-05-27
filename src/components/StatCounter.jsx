@@ -41,7 +41,7 @@ function StatItem({ value, suffix = '', label, duration = 2200 }) {
 
 export default function StatCounter({ stats }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[rgba(181,154,99,0.15)]">
+    <div className="grid grid-cols-3 divide-x divide-[rgba(181,154,99,0.15)] max-w-2xl mx-auto">
       {stats.map((s, i) => (
         <StatItem key={i} {...s} duration={1800 + i * 200} />
       ))}
