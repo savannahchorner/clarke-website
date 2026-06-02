@@ -59,10 +59,10 @@ function TeamGrid() {
               member={member}
               index={i}
               mono
-              size="large"
-              photoScale={i === 0 ? 1.5 : 1}
+              size="xlarge"
+              photoScale={i === 0 ? 1.5 : 1.1}
               imagePosition="top"
-              photoOrigin={i === 0 ? 'center top' : 'center center'}
+              photoOrigin="center top"
               photoContrast={i === 0 ? 1.15 : 1.08}
             />
           ))}

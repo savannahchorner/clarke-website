@@ -41,7 +41,7 @@ export const portfolioCompanies = [
   {
     name: 'BoardCo',
     slug: 'boardco',
-    logoScale: 1.40,
+    logoScale: 1.2,
     logo: '/assets/portfolio-logos/boardco-portfolio-carousel.png',
     category: 'Specialty Retail & Action Sports',
     description:

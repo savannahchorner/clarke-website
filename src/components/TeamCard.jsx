@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 
 const photoHeights = {
+  xlarge:  'h-[22rem]',
   large:   'h-72',
   default: 'h-64',
   small:   'h-56',
@@ -34,6 +35,7 @@ export default function TeamCard({
   photoBrightness = 1,
   photoOrigin = 'center center',
   photoContrast = 1.08,
+  photoFit = 'cover',
 }) {
   const { name, title, subtitle, bio, image, focus, linkedin } = member
   const heightClass = photoHeights[size] ?? photoHeights.default
@@ -41,6 +43,7 @@ export default function TeamCard({
   if (mono) filterParts.push(`grayscale(100%) contrast(${photoContrast})`)
   if (photoBrightness !== 1) filterParts.push(`brightness(${photoBrightness})`)
   const photoStyle = {
+    objectFit: photoFit,
     objectPosition: imagePosition,
     filter: filterParts.length ? filterParts.join(' ') : undefined,
     transform: photoScale !== 1 ? `scale(${photoScale})` : undefined,

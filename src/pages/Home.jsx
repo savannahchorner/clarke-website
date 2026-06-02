@@ -152,7 +152,7 @@ function OperatingAdvantage() {
             label="The Clarke Advantage"
             title="Built for Founders Who Are Ready to Grow with Purpose."
             centered
-            noWrapTitle
+            titleSize="text-2xl md:text-3xl lg:text-[2.5rem] lg:whitespace-nowrap"
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -207,7 +207,17 @@ function TeamPreview() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {preview.map((member, i) => (
-            <TeamCard key={member.id} member={member} index={i} mono />
+            <TeamCard
+              key={member.id}
+              member={member}
+              index={i}
+              mono
+              size="xlarge"
+              photoScale={i === 0 ? 1.5 : 1.1}
+              imagePosition="top"
+              photoOrigin="center top"
+              photoContrast={i === 0 ? 1.15 : 1.08}
+            />
           ))}
         </div>
       </div>

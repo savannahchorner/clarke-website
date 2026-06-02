@@ -21,6 +21,7 @@ export default function SectionHeading({
   noWrapTitle = false,
   noWrapSubtitle = false,
   compact = false,
+  titleSize = null,
 }) {
   return (
     <motion.div
@@ -37,12 +38,12 @@ export default function SectionHeading({
         variants={item}
         className={`font-serif font-400 leading-[1.08] mb-5 ${
           light ? 'text-richBlack' : 'text-ivory'
-        } ${compact
+        } ${titleSize || (compact
           ? 'text-2xl md:text-3xl lg:text-4xl'
           : noWrapTitle
             ? 'text-4xl md:text-5xl lg:text-5xl xl:text-6xl lg:whitespace-nowrap'
             : 'text-4xl md:text-5xl lg:text-6xl'
-        }`}
+        )}`}
       >
         {title}
       </motion.h2>
