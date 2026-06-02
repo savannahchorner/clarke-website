@@ -16,14 +16,6 @@ export const teamMembers = [
     linkedin: 'https://www.linkedin.com/in/theandreaclarke/',
   },
   {
-    id: 3,
-    name: 'James Harrison',
-    title: 'Partner',
-    subtitle: null,
-    image: '/assets/team/james-harrison.png',
-    linkedin: 'https://www.linkedin.com/in/jamesatharrison/',
-  },
-  {
     id: 4,
     name: 'Tyler Hartmann',
     title: 'Partner',
@@ -58,6 +50,14 @@ export const teamMembers = [
 ]
 
 export const operatingPartners = [
+  {
+    id: 3,
+    name: 'James Harrison',
+    title: 'Operating Partner',
+    subtitle: null,
+    image: '/assets/team/james-harrison.png',
+    linkedin: 'https://www.linkedin.com/in/jamesatharrison/',
+  },
   {
     id: 1,
     name: 'Vageesh Naik',

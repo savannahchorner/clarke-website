@@ -35,9 +35,9 @@ function PageHero() {
 
 function TeamGrid() {
   // Row 1: partners/founders — larger cards
-  const primaryRow = teamMembers.slice(0, 4)   // James Clarke, Andrea Clarke, James Harrison, Tyler Hartmann
-  // Row 2: directors/analysts — smaller cards, includes Denise Bird
-  const secondaryRow = teamMembers.slice(4)     // Denise Bird, Savannah Horner, Chad Paxman
+  const primaryRow = teamMembers.slice(0, 3)   // James Clarke, Andrea Clarke, Tyler Hartmann
+  // Row 2: directors/analysts — smaller cards
+  const secondaryRow = teamMembers.slice(3)     // Denise Bird, Savannah Horner, Chad Paxman
 
   return (
     <section className="py-32 bg-richBlack">
@@ -51,8 +51,8 @@ function TeamGrid() {
           />
         </div>
 
-        {/* Row 1 — 4 primary members, larger photos, centered */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        {/* Row 1 — 3 primary members, larger photos */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
           {primaryRow.map((member, i) => (
             <TeamCard
               key={member.id}
@@ -60,7 +60,6 @@ function TeamGrid() {
               index={i}
               mono
               size="large"
-              photoBrightness={i === 2 ? 1.25 : 1}
               photoScale={i === 0 ? 1.5 : 1}
               imagePosition="top"
               photoOrigin={i === 0 ? 'center top' : 'center center'}
@@ -99,8 +98,7 @@ function OperatingPartnersGrid() {
             noWrapSubtitle
           />
         </div>
-        {/* Centered 3-column grid; Vageesh (index 0) gets center crop to fix his head position */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {operatingPartners.map((member, i) => (
             <TeamCard
               key={member.id}
