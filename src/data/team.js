@@ -47,6 +47,14 @@ export const teamMembers = [
     image: '/assets/team/chad-paxman.png',
     linkedin: 'https://www.linkedin.com/in/chad-paxman-6ba0a41a8/',
   },
+  {
+    id: 8,
+    name: 'Eli St. Clair',
+    title: 'Analyst',
+    subtitle: null,
+    image: '/assets/team/eli-st-clair.png',
+    linkedin: 'https://linkedin.com/in/eli-st-clair',
+  },
 ]
 
 export const operatingPartners = [

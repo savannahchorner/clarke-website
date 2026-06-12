@@ -57,7 +57,7 @@ export default function LightningSection() {
           >
             The difference between<br />
             <span className="lg:whitespace-nowrap">expertise and luck.</span><br />
-            <span className="text-gradient-gold italic">Lightning striking repeatedly.</span>
+            <span className="text-gradient-gold italic">Lightning Striking Over and Over.</span>
           </h2>
           <div className="flex justify-center">
             <div className="gold-divider" />

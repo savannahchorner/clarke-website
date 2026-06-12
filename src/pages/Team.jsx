@@ -60,6 +60,7 @@ function TeamGrid() {
               index={i}
               mono
               size="xlarge"
+              photoAspect="3/4"
               photoScale={i === 0 ? 1.2 : 1.0}
               imagePosition="top"
               photoOrigin="center top"
@@ -68,8 +69,8 @@ function TeamGrid() {
           ))}
         </div>
 
-        {/* Row 2 — 3 support members, smaller photos, centered below row 1 */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        {/* Row 2 — 4 support members, smaller photos, centered below row 1 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {secondaryRow.map((member, i) => (
             <TeamCard
               key={member.id}
@@ -77,7 +78,12 @@ function TeamGrid() {
               index={i}
               mono
               size="small"
-              imagePosition="top"
+              photoAspect="3/4"
+              imagePosition={member.id === 8 ? '50% 95%' : 'top'}
+              photoScale={member.id === 8 ? 1.3 : 1}
+              photoOrigin={member.id === 8 ? 'center top' : 'center center'}
+              photoContrast={member.id === 8 ? 1.25 : 1.08}
+              photoBrightness={member.id === 8 ? 1.05 : 1}
             />
           ))}
         </div>
@@ -98,13 +104,14 @@ function OperatingPartnersGrid() {
             noWrapSubtitle
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {operatingPartners.map((member, i) => (
             <TeamCard
               key={member.id}
               member={member}
               index={i}
               mono
+              photoAspect="3/4"
               imagePosition="top"
             />
           ))}

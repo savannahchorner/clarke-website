@@ -36,9 +36,10 @@ export default function TeamCard({
   photoOrigin = 'center center',
   photoContrast = 1.08,
   photoFit = 'cover',
+  photoAspect = null,
 }) {
   const { name, title, subtitle, bio, image, focus, linkedin } = member
-  const heightClass = photoHeights[size] ?? photoHeights.default
+  const heightClass = photoAspect ? '' : (photoHeights[size] ?? photoHeights.default)
   const filterParts = []
   if (mono) filterParts.push(`grayscale(100%) contrast(${photoContrast})`)
   if (photoBrightness !== 1) filterParts.push(`brightness(${photoBrightness})`)
@@ -61,10 +62,13 @@ export default function TeamCard({
       whileHover={{ y: -4 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="card-base overflow-hidden group block cursor-pointer transition-shadow duration-500 hover:shadow-[0_0_0_1px_rgba(181,154,99,0.32),0_12px_40px_rgba(0,0,0,0.38)]"
+      className="card-base overflow-hidden group flex flex-col cursor-pointer transition-shadow duration-500 hover:shadow-[0_0_0_1px_rgba(181,154,99,0.32),0_12px_40px_rgba(0,0,0,0.38)]"
     >
       {/* Photo */}
-      <div className={`relative ${heightClass} overflow-hidden bg-charcoal`}>
+      <div
+        className={`relative ${heightClass} overflow-hidden bg-charcoal`}
+        style={photoAspect ? { aspectRatio: photoAspect } : undefined}
+      >
         {image ? (
           <img
             src={image}
@@ -80,7 +84,7 @@ export default function TeamCard({
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-6 flex-1">
         <h3 className="font-serif text-xl font-600 text-ivory mb-1 leading-tight">{name}</h3>
         <p className="font-sans text-xs text-mutedGold tracking-widest uppercase mb-1">{title}</p>
         {subtitle && (
