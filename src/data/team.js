@@ -32,20 +32,20 @@ export const teamMembers = [
     linkedin: 'https://www.linkedin.com/in/denise-b-bird/',
   },
   {
-    id: 6,
-    name: 'Savannah Horner',
-    title: 'Marketing Analyst',
-    subtitle: null,
-    image: '/assets/team/savannah-horner.png',
-    linkedin: 'https://www.linkedin.com/in/savannah-horner-3b7344205/',
-  },
-  {
     id: 7,
     name: 'Chad Paxman',
     title: 'Senior Analyst',
     subtitle: null,
     image: '/assets/team/chad-paxman.png',
     linkedin: 'https://www.linkedin.com/in/chad-paxman-6ba0a41a8/',
+  },
+  {
+    id: 6,
+    name: 'Savannah Horner',
+    title: 'Marketing Analyst',
+    subtitle: null,
+    image: '/assets/team/savannah-horner.png',
+    linkedin: 'https://www.linkedin.com/in/savannah-horner-3b7344205/',
   },
   {
     id: 8,
